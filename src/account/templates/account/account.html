@@ -94,6 +94,7 @@
         <ul class="list-group">
         {% for post in blog_posts %}
           <a href="{% url 'blog:detail' post.slug %}" style="text-decoration: none;"><li class="list-group-item">{{post}}</li></a>
+          <button class="btn btn-sc btn-primary btn-block" type="submit">delete</button>
         {% endfor %}
         </ul>
       {% else %}

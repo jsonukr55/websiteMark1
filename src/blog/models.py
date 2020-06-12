@@ -1,4 +1,5 @@
-from django.db import models
+from django.db import models 
+from datetime import datetime
 from django.db.models.signals import pre_save
 from django.utils.text import slugify
 from django.conf import settings
@@ -15,7 +16,7 @@ class BlogPost(models.Model):
 	title 					= models.CharField(max_length=50, null=False, blank=False)
 	body 					= models.TextField(max_length=500000, null=False, blank=False)
 	image		 			= models.ImageField(upload_to=upload_location, null=True, blank=True)
-	date_published 			= models.DateTimeField(auto_now_add=True, verbose_name="date published")
+	date_published 			= models.DateTimeField(auto_now=True, verbose_name="date published")
 	date_updated 			= models.DateTimeField(auto_now=True, verbose_name="date updated")
 	author 					= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	slug 					= models.SlugField(blank=True, unique=True)
@@ -25,10 +26,12 @@ class BlogPost(models.Model):
 
 @receiver(post_delete, sender=BlogPost)
 def submission_delete(sender, instance, **kwargs):
-    instance.image.delete(False) 
+    instance.image.delete(True) 
 
 def pre_save_blog_post_receiver(sender, instance, *args, **kwargs):
 	if not instance.slug:
 		instance.slug = slugify(instance.author.username + "-" + instance.title)
 
 pre_save.connect(pre_save_blog_post_receiver, sender=BlogPost)
+
+models.date_modified = datetime.now()
