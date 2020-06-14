@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style type="text/css">
+
+.row{
+  background: #607d8b; 
+  position: absolute;
+  top: 80px;
+  right: 8%;
+  width: 30%;
+  height: auto;
+  border: 3px solid grey; 
+}
+.contact-us-form{
+    position:absolute;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+    
+}
+.contact-us-form .form-control:focus {
+    z-index: 2;
+  }
+
+.contact-us-form input[type="email"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .contact-us-form input[type="text"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .contact-us-form {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  }
+  .title{
+    text-align: center; 
+  }
+  .email{
+    text-align: center; 
+  }
+  .name{
+    text-align: center; 
+  }
+  .message{
+    text-align: center; 
+  }
+
+</style>
+
+<form class="contact-us-form" action="#" id="contact">{% csrf_token %}
+<div class="d-flex flex-column">
+
+    <div class="contact" style="max-width:600px">
+      <h3 class="title"><b>Contact Us</b></h4>
+      <form action="post">
+        <div class="name">
+          <input type="char" name="name" id="inputName" class="form-control" placeholder="Name" required autofocus>
+        </div>
+        <div class="email">
+          <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        </div>
+        <div class="message">
+          <textarea class="form-control" rows="10" type="text" name="body" id="id_body" placeholder="This blog is about..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary btn-block " name="submit-btn" href="{% url 'Home'%}">Send Message</button>
+      </form>
+    </div>
+  </div>
+</form>
+
+
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <div class="contact-imformation">
+        <h5>Address</h5>
+        <p>Somewhere in India, On earth.</p>
+
+        <h5>Phone</h5>
+        <p>+91 123456789</p>
+
+        <h5>Email</h5>
+        <p>contactus@picsl.com</p>
+        
+      </div>
+      
+    </div>
+  </div>
+{% endblock content %}

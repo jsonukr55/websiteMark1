@@ -19,6 +19,7 @@ from mysite.views import(home_view,)
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
+from ContactUs.views import contact_us
 from account.views import(registration_view,
 
     logout_view,
@@ -35,6 +36,9 @@ urlpatterns = [
     path('login/',login_view,name='login'),
     path('must_authenticate/',must_authenticate_view,name='must_authenticate'),
     path('account/',account_view,name='account'),
+    path('ContactUs/',contact_us,name='ContactUs'),
+
+   
 
 
 
